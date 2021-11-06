@@ -69,7 +69,7 @@
         <h1 style=" text-align: -webkit-center;">Cadastro de Pessoa Física </h1>
         <div class="form-group">
             <label for="usr">E-mail:</label>
-            <input type="text" class="form-control" id="usr"> 
+            <input type="text" class="form-control" id="email"> 
           </div>
           <div class="form-group">
             <label for="senha">Senha:</label>
@@ -81,7 +81,7 @@
         <input type="text" class="form-control" id="Sobrenome">
      <div class="form-group col-md-4">
         <label>CPF:</label>
-        <input type="text" class="form-control cpf-mask" placeholder="Ex.: 000.000.000-00"onkeypress="$(this).mask('000.000.000-00');">
+        <input type="text" class="form-control cpf-mask" placeholder="Ex.: 000.000.000-00"onkeypress="$(this).mask('000.000.000-00');"id="cpf">
      </div>
     <div class="form-group col-md-4">
         <label>Telefone:</label>
@@ -130,7 +130,7 @@
     </div>
     
     </div>
-    <button type="enviar" class="btn btn-primary">Enviar</button>
+    <button type="enviar" class="btn btn-primary" onclick="cadastrar();">Enviar</button>
 </div>
 </div>
 <footer>
@@ -181,10 +181,24 @@
 <script>
 
 
-function desenhar(data){
-    console.log(data);
-    let div = document.getElementById("div");
-    let stringHtml = "<img src='"+data.icon_url+"'><br/>" + data.value;
-    div.innerHTML = stringHtml;
+function cadastrar(){
+    cliente = {};
+    cliente.nome = document.getElementById("nome").value;
+    cliente.cpf = document.getElementById("cpf").value;
+    cliente.email = document.getElementById("email").value;
+    cliente.senha = document.getElementById("senha").value;
+    
+    axios.post("http://localhost:8080/cliente", cliente)
+    .then(function (response) {
+        //limparFormulario();
+    })
+    .catch(function (error) {
+
+    });
+
+    alert("Cadastro realizado com sucesso");
+    //limparFormulario();
 }
+
+
 </script>

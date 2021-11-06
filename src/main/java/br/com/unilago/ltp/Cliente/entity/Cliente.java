@@ -1,5 +1,6 @@
 package br.com.unilago.ltp.Cliente.entity;
 
+import java.util.List;
 import javax.persistence.Entity;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
@@ -16,5 +17,8 @@ public class Cliente extends PanacheEntity{
 
     public int cidade;
 
- 
+    public static List<Cliente> findByName(String nome){
+        return find("nome", nome).list();
+    }
+
 }
