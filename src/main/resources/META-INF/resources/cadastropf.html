@@ -179,33 +179,7 @@
 
 
 <script>
-function consumirApi(){  
-    axios.post('http://localhost:8080/cliente',{ 
-        "nome": "Eduardo", 
-        "cpf":"39265889623", 
-        "email": "eduardohmantovani@outlook.com", 
-        "senha": "123456", 
-        "cidade": 1 } 
-          )
-    .then(function (response) {
-        desenhar(response.data);
-    })
-    .catch(function (error) {
-        let div = document.getElementById("div");
-        div.innerHTML = "Erro ao consumir endpoint";
-    });
-}
 
-function consumirQuarkus(){    
-    axios.get('/hello')
-    .then(function (response) {
-        console.log(response);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    });
-}
 
 function desenhar(data){
     console.log(data);
