@@ -15,7 +15,7 @@ public class Cliente extends PanacheEntity{
 
     public String senha;
 
-    public int cidade;
+    public int cidade_id;
 
     public static List<Cliente> findByName(String nome){
         return find("nome", nome).list();

@@ -15,7 +15,7 @@
         <meta charset="utf-8">	
         <link rel="stylesheet" href="css/css.css">
     </head>
-<body>
+<body onload="popularEstados();">
     
     <div class="Menu-principal">
 
@@ -88,41 +88,15 @@
         <input type="text" class="form-control cel-sp-mask" placeholder="Ex.: (00) 00000-0000" onkeypress="$(this).mask('(00) 00000-0000')">
     </div>     
     <h4>Endereço:</h4>
-  <form action="/action_page.php">
-    <div class="form-group">
-      <label for="selEstado">Selecionae o Estado:</label>
-      <select class="form-control" id="selEstado" name="estaselc">
-            <option value="AC">Acre</option>
-			<option value="AL">Alagoas</option>
-			<option value="AP">Amapá</option>
-			<option value="AM">Amazonas</option>
-			<option value="BA">Bahia</option>
-			<option value="CE">Ceará</option>
-			<option value="DF">Distrito Federal</option>
-			<option value="ES">Espírito Santo</option>
-			<option value="GO">Goiás</option>
-			<option value="MA">Maranhão</option>
-			<option value="MT">Mato Grosso</option>
-			<option value="MS">Mato Grosso do Sul</option>
-			<option value="MG">Minas Gerais</option>
-			<option value="PA">Pará</option>
-			<option value="PB">Paraíba</option>
-			<option value="PR">Paraná</option>
-			<option value="PE">Pernambuco</option>
-			<option value="PI">Piauí</option>
-			<option value="RJ">Rio de Janeiro</option>
-			<option value="RN">Rio Grande do Norte</option>
-			<option value="RS">Rio Grande do Sul</option>
-			<option value="RO">Rondônia</option>
-			<option value="RR">Roraima</option>
-			<option value="SC">Santa Catarina</option>
-			<option value="SP">São Paulo</option>
-			<option value="SE">Sergipe</option>
-			<option value="TO">Tocantins</option>
-      </select>
     <div>
-        <label for="Cidade">Cidade:</label>
-        <input type="text" class="form-control" id="cidade">
+        <span>Estado:</span>
+        <select id="selEstado" onchange="popularCidades();">
+            <option></option>
+        </select>
+    </div>
+    <div>
+        <span>Cidade:</span>
+        <select id="selCidade" disabled></select>
     </div>
     <div class="form-group col-md-4">
         <label>CEP</label>
@@ -200,5 +174,48 @@ function cadastrar(){
     //limparFormulario();
 }
 
+
+function popularEstados(){
+    axios.get('http://localhost:8080/estado', {})
+    .then(function (response) {
+        preencherSelectEstados(response.data);
+    })
+    .catch(function (error) {
+        
+    });
+}
+
+function preencherSelectEstados(dados){
+    let selectEstado = document.getElementById("selEstado");
+
+    dados.forEach((estado) => {
+        option = new Option(estado.descricao, estado.uf);
+        selectEstado.options[selectEstado.options.length] = option;
+    });
+}
+
+function popularCidades(){
+    let ufSelecionado = document.getElementById("selEstado").value;
+    if (ufSelecionado == "") return;
+    
+    axios.get('http://localhost:8080/cidade/'+ufSelecionado, {})
+    .then(function (response) {
+        preencherSelectCidade(response.data);
+    })
+    .catch(function (error) {
+        
+    });
+}
+
+function preencherSelectCidade(dados){
+    let selectCidade = document.getElementById("selCidade");
+    selectCidade.options = [];
+    selectCidade.options.length = 0;
+    dados.forEach((cidade) => {
+        option = new Option(cidade.descricao, cidade.id);
+        selectCidade.options[selectCidade.options.length] = option;
+    });
+    selectCidade.disabled = false;
+}
 
 </script>

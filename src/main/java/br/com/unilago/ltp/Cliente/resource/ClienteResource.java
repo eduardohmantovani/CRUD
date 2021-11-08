@@ -23,6 +23,7 @@ public class ClienteResource {
         return Cliente.listAll();
     }
 
+
     @POST
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
