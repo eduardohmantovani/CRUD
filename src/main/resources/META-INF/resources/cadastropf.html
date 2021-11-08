@@ -11,6 +11,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>       
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <title>Help@ki</title>
         <meta charset="utf-8">	
         <link rel="stylesheet" href="css/css.css">
@@ -65,47 +66,48 @@
     </div>
   
 <div class="container w30" style ="width: 767px;margin-top: 88px;">
-    <div class="form-group">
-        <h1 style=" text-align: -webkit-center;">Cadastro de Pessoa Física </h1>
-        <div class="form-group">
-            <label for="usr">E-mail:</label>
-            <input type="text" class="form-control" id="email"> 
-          </div>
-          <div class="form-group">
-            <label for="senha">Senha:</label>
-            <input type="password" class="form-control" maxlength="10" id="senha" value="">
-          </div>
-        <label for="nome">Nome:</label>
-        <input type="text" class="form-control" id="nome">
-        <label for="sobrnome">Sobrenome:</label>
-        <input type="text" class="form-control" id="Sobrenome">
-     <div class="form-group col-md-4">
-        <label>CPF:</label>
-        <input type="text" class="form-control cpf-mask" placeholder="Ex.: 000.000.000-00"onkeypress="$(this).mask('000.000.000-00');"id="cpf">
-     </div>
-    <div class="form-group col-md-4">
-        <label>Telefone:</label>
-        <input type="text" class="form-control cel-sp-mask" placeholder="Ex.: (00) 00000-0000" onkeypress="$(this).mask('(00) 00000-0000')">
-    </div>     
-    <h4>Endereço:</h4>
-    <div>
-        <span>Estado:</span>
-        <select id="selEstado" onchange="popularCidades();">
-            <option></option>
-        </select>
-    </div>
-    <div>
-        <span>Cidade:</span>
-        <select id="selCidade" disabled></select>
-    </div>
-    <div class="form-group col-md-4">
-        <label>CEP</label>
-        <input type="text" class="form-control cep-mask" placeholder="Ex.: AAA 000-S0S" onkeypress="$(this).mask('00.000-000')">
-    </div>
-    
-    </div>
-    <button type="enviar" class="btn btn-primary" onclick="cadastrar();">Enviar</button>
-</div>
+
+    <form id="formCadastro">
+            <div class="form-group">
+                <h1 style=" text-align: -webkit-center;">Cadastro de Pessoa Física </h1>
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome"required>      
+                <label for="usr">E-mail:</label>
+                <input type="text" class="form-control" id="email"required>  
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="senha">Senha:</label>
+                        <input type="password" class="form-control" maxlength="10" id="senha" value=""required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="senha">Confirmar Senha:</label>
+                        <input type="password" class="form-control" maxlength="10" id="ConfirmaSenha" onblur="validaSenha()" value=""required>
+                    </div>
+                </div>      
+
+                
+
+            <div class="form-group col-md-4">
+                <label>CPF:</label>
+                <input type="text" class="form-control cpf-mask" id="cpf" placeholder="Ex.: 000.000.000-00"onkeypress="$(this).mask('000.000.000-00')">
+            </div>
+        
+            <h4>Endereço:</h4>
+            <div>
+                <span>Estado:</span>
+                <select id="selEstado" onchange="popularCidades();">
+                    <option></option>
+                </select>
+            </div>
+            <div>
+                <span>Cidade:</span>
+                <select id="selCidade" disabled></select>
+            </div>
+            
+            </div>
+            <button type="enviar" class="btn btn-primary" onclick="cadastrar();">Enviar</button>
+        </div>
+    </form>
 </div>
 <footer>
 		<div class="row row-rodape">
@@ -160,7 +162,8 @@ function cadastrar(){
     cliente.nome = document.getElementById("nome").value;
     cliente.cpf = document.getElementById("cpf").value;
     cliente.email = document.getElementById("email").value;
-    cliente.senha = document.getElementById("senha").value;
+    cliente.senha = $("#senha").val();
+    cliente.cidade_id = document.getElementById("selCidade").value;
     
     axios.post("http://localhost:8080/cliente", cliente)
     .then(function (response) {
@@ -217,5 +220,21 @@ function preencherSelectCidade(dados){
     });
     selectCidade.disabled = false;
 }
+function validaSenha(){
+
+    if ($("#senha").val() != $("#ConfirmaSenha").val()){
+        Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'Senhas não corresponde!',     
+        })
+    }
+
+
+
+}
+
+
+
 
 </script>
