@@ -89,20 +89,25 @@
 
             <div class="form-group col-md-4">
                 <label>CPF:</label>
-                <input type="text" class="form-control cpf-mask" id="cpf" placeholder="Ex.: 000.000.000-00"onkeypress="$(this).mask('000.000.000-00')">
+                <input type="text" class="form-control cpf-mask" id="cpf" placeholder="Ex.: 000.000.000-00"onkeypress="$(this).mask('000.000.000-00')"required>
             </div>
         
+           
             <h4>Endereço:</h4>
-            <div>
-                <span>Estado:</span>
-                <select id="selEstado" onchange="popularCidades();">
-                    <option></option>
-                </select>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <span>Estado:</span>
+                    <select id="selEstado" onchange="popularCidades();">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <span>Cidade:</span>
+                    <select id="selCidade" disabled></select>
+                </div>
             </div>
-            <div>
-                <span>Cidade:</span>
-                <select id="selCidade" disabled></select>
-            </div>
+            
             
             </div>
             <button type="enviar" class="btn btn-primary" onclick="cadastrar();">Enviar</button>
@@ -158,25 +163,34 @@
 
 
 function cadastrar(){
+    
+    if($("#nome").val()=='' || $("#cpf").val() == '' || $("#email").val() == '' || $("#senha").val() == '' || $("#ConfirmaSenha").val('') == '')
+    {
+        Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'Preecha todos os campos!',           
+        })
+       return;
+    }
     cliente = {};
-    cliente.nome = document.getElementById("nome").value;
-    cliente.cpf = document.getElementById("cpf").value;
-    cliente.email = document.getElementById("email").value;
+    cliente.nome = $("#nome").val();
+    cliente.cpf = $("#cpf").val();
+    cliente.email = $("#email").val();
     cliente.senha = $("#senha").val();
-    cliente.cidade_id = document.getElementById("selCidade").value;
+    cliente.cidade_id = $("#selCidade").val();
     
     axios.post("http://localhost:8080/cliente", cliente)
     .then(function (response) {
-        //limparFormulario();
+        window.location.href = "/login.html";
+        $("#formCadastro")[0].reset();
+
     })
+
     .catch(function (error) {
 
     });
-
-    alert("Cadastro realizado com sucesso");
-    //limparFormulario();
 }
-
 
 function popularEstados(){
     axios.get('http://localhost:8080/estado', {})
@@ -226,9 +240,13 @@ function validaSenha(){
         Swal.fire({
         icon: 'warning',
         title: 'Oops...',
-        text: 'Senhas não corresponde!',     
+        text: 'Senhas não correspondem. Digite novamente!',           
         })
+        $("#ConfirmaSenha").val('');
+        $("#senha").val('');
+
     }
+
 
 
 
