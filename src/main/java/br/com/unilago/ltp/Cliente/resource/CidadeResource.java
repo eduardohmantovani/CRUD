@@ -17,6 +17,9 @@ public class CidadeResource {
     @Path("/{uf}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Cidade> listByUf(@PathParam("uf") String uf){
-        return Cidade.listByUf(uf);
+
+        //System.out.println("teste");
+    return Cidade.listByUf(uf);
+        
     }
 }
