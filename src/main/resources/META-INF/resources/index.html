@@ -65,8 +65,8 @@
         <img src="img/logo.png" alt="logo"style="width: 160px;">
         <h1>Pesquise uma empresa!</h1>
         <div class="input-group rounded">
-            <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Buscar"
-              aria-describedby="search-addon" />
+            <input type="search" class="form-control rounded" placeholder="Buscar" id="buscarEmpresa" onchange="buscarEmpresa()" aria-label="Buscar"  aria-describedby="search-addon" />
+            <span>Id:</span>
             <img class="pesquisa" src="img/pesquisa.png" style="width: 40px;">            
        </div>       
     </div>
@@ -175,21 +175,35 @@
     </footer>
 </body>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </html>
+<script>
+
+
+function buscarEmpresa(){
+    let id  = $("#buscarEmpresa").val();
+
+    axios.get('http://localhost:8080/empresa', {})
+    .then(function (response) {
+        alert("teste");
+        preencherSelectCidade(response.data);
+    })
+    .catch(function (error) {
+        
+    });
+
+}
+
+
+
+function empresas(dados){
+
+    let selectEstado = document.getElementById("selEstado");
+
+    dados.forEach((estado) => {
+        option = new Option(estado.descricao, estado.uf);
+        selectEstado.options[selectEstado.options.length] = option;
+    });
+}
+
+
+</script>
