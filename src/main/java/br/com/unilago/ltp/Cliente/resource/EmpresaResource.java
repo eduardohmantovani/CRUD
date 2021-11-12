@@ -3,6 +3,7 @@ package br.com.unilago.ltp.Cliente.resource;
 import java.util.List;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
@@ -41,7 +42,8 @@ public class EmpresaResource {
    @GET
     @Path("/{nome}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Empresa> buscarPorNome(@QueryParam("nome") String nome){
+  
+    public List<Empresa> buscarPorNome(@PathParam("nome") String nome){
         if(nome == null){
             throw new BadRequestException("Enviar o parâmetro nome");
         }
