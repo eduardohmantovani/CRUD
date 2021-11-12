@@ -38,7 +38,7 @@ public class EmpresaResource {
         return Response.status(Status.CREATED).entity(empresa).build();
     }
 
-    @GET
+   @GET
     @Path("/{nome}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Empresa> buscarPorNome(@QueryParam("nome") String nome){
@@ -48,7 +48,6 @@ public class EmpresaResource {
                
         return Empresa.findByName(nome);
     }
-
 
 }
 

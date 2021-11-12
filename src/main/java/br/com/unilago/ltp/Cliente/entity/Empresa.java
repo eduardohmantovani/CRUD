@@ -9,7 +9,7 @@ public class Empresa extends PanacheEntity{
 
     public String nome;
 
-    public String cnpf;
+    public String cnpj;
 
     public String email;
 

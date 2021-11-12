@@ -10,11 +10,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>       
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-        <title>Help@ki</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>"http://cdn.jsdelivr.net/npm/sweetalert2@11"</script>
+        <title>Help@ki</title> 
         <meta charset="utf-8">	
         <link rel="stylesheet" href="css/css.css">
     </head>
-<body>
+<body onload="popularEstados();">
     
     <div class="Menu-principal">
 
@@ -64,74 +66,53 @@
     </div>
   
 <div class="container w30" style ="width: 767px;margin-top: 88px;">
+    <form id="formCadastro">
     <div class="form-group">
         <h1 style=" text-align: -webkit-center;">Cadastro Jurídica </h1>
-        <div class="form-group">
-            <label for="usr">E-mail:</label>
-            <input type="text" class="form-control" id="usr"> 
-          </div>
-          <div class="form-group">
-            <label for="senha">Senha:</label>
-            <input type="password" class="form-control" maxlength="10" id="senha" value="">
-          </div>
+            
+        <label for="usr">E-mail:</label>
+            <input type="text" class="form-control" id="email"required> 
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="senha">Senha:</label>
+                    <input type="password" class="form-control" maxlength="10" id="senha" value=""required>
+                </div>
+                <div class="col-md-6">
+                    <label for="senha">Confirmar Senha:</label>
+                    <input type="password" class="form-control" maxlength="10" id="ConfirmaSenha" onblur="validaSenha()" value=""required>
+                </div>
+            </div>    
+
+
         <label for="nome">Razão Social:</label>
-        <input type="text" class="form-control" id="nome">
-        <label for="sobrnome">URL site empresa:</label>
-        <input type="text" class="form-control" id="Sobrenome">
+        <input type="text" class="form-control" id="nome"required>
+
+
+
+
      <div class="form-group col-md-4">
         <label>CNPJ:</label>
-        <input type="text" class="form-control cnpj-mask" placeholder="Ex.: 00.000.000/0000-00" onkeypress="$(this).mask('00.000.000/0000-00');">
+        <input type="text" class="form-control cnpj-mask" id="cnpj" placeholder="Ex.: 00.000.000/0000-00" onkeypress="$(this).mask('00.000.000/0000-00')"required>
+     </div>  
+
+     <h4>Endereço:</h4>
+     <div class="row">
+         <div class="col-md-6">
+             <span>Estado:</span>
+             <select id="selEstado" onchange="popularCidades();">
+                 <option></option>
+             </select>
+         </div>
+         <div class="col-md-6">
+             <span>Cidade:</span>
+             <select id="selCidade" disabled></select>
+         </div>
      </div>
-    <div class="form-group col-md-4">
-        <label>Telefone:</label>
-        <input type="text" class="form-control cel-sp-mask" placeholder="Ex.: (00) 00000-0000" onkeypress="$(this).mask('(00) 00000-0000')">
-    </div>     
-    <h4>Endereço:</h4>
-  <form action="/action_page.php">
-    <div class="form-group">
-      <label for="selEstado">Selecionae o Estado:</label>
-      <select class="form-control" id="selEstado" name="estaselc">
-            <option value="AC">Acre</option>
-			<option value="AL">Alagoas</option>
-			<option value="AP">Amapá</option>
-			<option value="AM">Amazonas</option>
-			<option value="BA">Bahia</option>
-			<option value="CE">Ceará</option>
-			<option value="DF">Distrito Federal</option>
-			<option value="ES">Espírito Santo</option>
-			<option value="GO">Goiás</option>
-			<option value="MA">Maranhão</option>
-			<option value="MT">Mato Grosso</option>
-			<option value="MS">Mato Grosso do Sul</option>
-			<option value="MG">Minas Gerais</option>
-			<option value="PA">Pará</option>
-			<option value="PB">Paraíba</option>
-			<option value="PR">Paraná</option>
-			<option value="PE">Pernambuco</option>
-			<option value="PI">Piauí</option>
-			<option value="RJ">Rio de Janeiro</option>
-			<option value="RN">Rio Grande do Norte</option>
-			<option value="RS">Rio Grande do Sul</option>
-			<option value="RO">Rondônia</option>
-			<option value="RR">Roraima</option>
-			<option value="SC">Santa Catarina</option>
-			<option value="SP">São Paulo</option>
-			<option value="SE">Sergipe</option>
-			<option value="TO">Tocantins</option>
-      </select>
-    <div>
-        <label for="Cidade">Cidade:</label>
-        <input type="text" class="form-control" id="cidade">
     </div>
-    <div class="form-group col-md-4">
-        <label>CEP</label>
-        <input type="text" class="form-control cep-mask" placeholder="Ex.: AAA 000-S0S" onkeypress="$(this).mask('00.000-000')">
-    </div>
-    
- 
-    </div>
-    <button type="enviar" class="btn btn-primary">Enviar</button>
+    <button type="enviar" class="btn btn-primary"onclick="cadastrar();">Enviar</button>
 </div>
+</form>
 </div>
 <footer>
 		<div class="row row-rodape">
@@ -176,3 +157,68 @@
 	</footer>
 </body>
 </html>
+<script>
+    function cadastrar(){
+  
+        empresa = {};
+        empresa.nome = $("#nome").val();
+        empresa.cnpj = $("#cnpj").val(); 
+        empresa.email = $("#email").val();
+        empresa.senha = $("#senha").val();
+        empresa.cidade_id = $("#selCidade").val();
+        
+        axios.post("http://localhost:8080/empresa", empresa)
+        .then(function (response) {
+            window.location.href = "/login.html";
+            $("#formCadastro")[0].reset();
+        })
+    
+        .catch(function (error) {
+    
+        });
+    }
+    
+function popularEstados(){
+    axios.get('http://localhost:8080/estado', {})
+    .then(function (response) {
+        preencherSelectEstados(response.data);
+    })
+    .catch(function (error) {
+        
+    });
+}
+
+function preencherSelectEstados(dados){
+    let selectEstado = document.getElementById("selEstado");
+
+    dados.forEach((estado) => {
+        option = new Option(estado.descricao, estado.uf);
+        selectEstado.options[selectEstado.options.length] = option;
+    });
+}
+
+function popularCidades(){
+    let ufSelecionado = document.getElementById("selEstado").value;
+    if (ufSelecionado == "") return;
+    
+    axios.get('http://localhost:8080/cidade/'+ufSelecionado, {})
+    .then(function (response) {
+        preencherSelectCidade(response.data);
+    })
+    .catch(function (error) {
+        
+    });
+}
+
+function preencherSelectCidade(dados){
+    let selectCidade = document.getElementById("selCidade");
+    selectCidade.options = [];
+    selectCidade.options.length = 0;
+    dados.forEach((cidade) => {
+        option = new Option(cidade.descricao, cidade.id);
+        selectCidade.options[selectCidade.options.length] = option;
+    });
+    selectCidade.disabled = false;
+}
+
+</script>

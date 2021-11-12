@@ -182,7 +182,7 @@
 function buscarEmpresa(){
     let id  = $("#buscarEmpresa").val();
 
-    axios.get('http://localhost:8080/empresa', {})
+    axios.get('http://localhost:8080/empresa/'+id, {})
     .then(function (response) {
         alert("teste");
         preencherSelectCidade(response.data);
@@ -190,10 +190,7 @@ function buscarEmpresa(){
     .catch(function (error) {
         
     });
-
 }
-
-
 
 function empresas(dados){
 
