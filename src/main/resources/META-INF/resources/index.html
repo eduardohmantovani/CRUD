@@ -185,7 +185,7 @@ function buscarEmpresa(){
     axios.get('http://localhost:8080/empresa/'+id, {})
     .then(function (response) {
         alert("teste");
-        preencherSelectCidade(response.data);
+        empresas(response.data);
     })
     .catch(function (error) {
         
