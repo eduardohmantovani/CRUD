@@ -3,12 +3,19 @@
 <html>
 
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+       
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">   
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="~/Content/MDB-UI-KIT-Pro-Essential-2.0.0/js/mdb.min.js"></script>
+
+
+
         <title>Help@ki</title>
         <meta charset="utf-8">	
         <link rel="stylesheet" href="css/css.css">
@@ -57,21 +64,26 @@
                         </ul>
                     </div>
                     </div>
-                </nav>
-            
+                </nav>       
         </div>
     </div>
     <div id ="Pesquisa">
         <img src="img/logo.png" alt="logo"style="width: 160px;">
         <h1>Pesquise uma empresa!</h1>
-        <div class="input-group rounded">
+        <img class="pesquisa" src="img/pesquisa.png" style="width: 40px;">  
+        <div class="container mt-3">
+        
             <input type="search" class="form-control rounded" placeholder="Buscar" id="buscarEmpresa" onchange="buscarEmpresa()" aria-label="Buscar"  aria-describedby="search-addon" />
-            <span>Id:</span>
-            <img class="pesquisa" src="img/pesquisa.png" style="width: 40px;">            
-       </div>       
+            <br>
+            <ul class="list-group" id="lista">
+            
+            </ul>  
+                     
+       </div>  
+      </div>
     </div>
     <hr>
- 
+    
     <section class="funcionalidades">
 
         <div id="icones"class="container">
@@ -184,7 +196,6 @@ function buscarEmpresa(){
 
     axios.get('http://localhost:8080/empresa/'+id, {})
     .then(function (response) {
-        alert("teste");
         empresas(response.data);
     })
     .catch(function (error) {
@@ -194,13 +205,47 @@ function buscarEmpresa(){
 
 function empresas(dados){
 
-    let selectEstado = document.getElementById("selEstado");
+    let nomes = ["Diego", "Gabriel", "Lucas"];
+    let lista = document.getElementById('lista');
+    for(var i = 0; i < dados.length; i++){
+        let item = document.createElement('li');
+        item.appendChild(document.createTextNode(dados.nome));
+        lista.appendChild(item);
+    }
 
-    dados.forEach((estado) => {
-        option = new Option(estado.descricao, estado.uf);
-        selectEstado.options[selectEstado.options.length] = option;
-    });
+
+            /*$("#Resul li").filter(function() {    
+                $("##Resul li").text(dados[0]["nome"]);
+            //$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+            $("#Resul").text(dados[0]["nome"]);
+
+            let selectEstado = document.getElementById("selEstado");
+
+            dados.forEach((empresa) => {
+                option = new Option(empresa.nome);
+                selectEstado.options[selectEstado.options.length] = option;
+            });
+
+        $(document).ready(function(){
+        $("#buscarEmpresa").on("keyup", function() {
+            //var value = $(this).val().toLowerCase();
+            var value =  $("#Resul").text(dados[0]["nome"]).toLowerCase();
+
+        });
+        });*/
+
+
 }
 
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    //var value = $(this).val().toLowerCase();
+    var value =  $("#Resul").text(dados[0]["nome"]).toLowerCase();
+    $("#myList li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 
 </script>
