@@ -9,7 +9,6 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -21,13 +20,13 @@ import br.com.unilago.ltp.Cliente.entity.Empresa;
 
 public class EmpresaResource {
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Empresa> getAll(){
+    //@GET
+    //@Produces(MediaType.APPLICATION_JSON)
+    ///public List<Empresa> getAll(){
            
-        return Empresa.listAll();
+       // return Empresa.listAll();
 
-    }
+    //}
     
     @POST
     @Transactional
@@ -44,10 +43,9 @@ public class EmpresaResource {
     @Produces(MediaType.APPLICATION_JSON)
   
     public List<Empresa> buscarPorNome(@PathParam("nome") String nome){
-        if(nome == null){
+        if(nome == null ){
             throw new BadRequestException("Enviar o parâmetro nome");
         }
-               
         return Empresa.findByName(nome);
     }
 
