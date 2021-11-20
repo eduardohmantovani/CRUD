@@ -20,13 +20,13 @@ import br.com.unilago.ltp.Cliente.entity.Empresa;
 
 public class EmpresaResource {
 
-    //@GET
-    //@Produces(MediaType.APPLICATION_JSON)
-    ///public List<Empresa> getAll(){
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Empresa> getAll(){
            
-       // return Empresa.listAll();
+       return Empresa.listAll();
 
-    //}
+    }
     
     @POST
     @Transactional
@@ -38,7 +38,7 @@ public class EmpresaResource {
         return Response.status(Status.CREATED).entity(empresa).build();
     }
 
-   @GET
+    @GET
     @Path("/{nome}")
     @Produces(MediaType.APPLICATION_JSON)
   
