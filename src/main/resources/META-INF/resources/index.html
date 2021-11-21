@@ -79,7 +79,7 @@
 
             </select>  
             
-            <button type="button" class="btn btn-outline-warning">Reclamar Agora</button>
+            <button id ="Reclamar"type="button" class="btn btn-outline-warning"onclick="reclamar()">Reclamar Agora</button>
        </div>  
       </div>
     </div>
@@ -190,6 +190,15 @@
 
 </html>
 <script>
+
+
+function reclamar(){
+
+var id = $ ("#list").val(); 
+session.setAttribute("cod_material", Integer.valueOf(s.getInt("id")));
+window.location = "reclamacao.html"; 
+
+} 
 
 
 function buscarEmpresa(){
