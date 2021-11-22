@@ -3,19 +3,22 @@
 <html>
 
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">   
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="~/Content/MDB-UI-KIT-Pro-Essential-2.0.0/js/mdb.min.js"></script>
         <title>Help@ki</title>
         <meta charset="utf-8">	
         <link rel="stylesheet" href="css/ranking.css">
     </head>
-<body>
+
     
-    <body>
+    <body onload="buscarReclamacao()">
     
         <div class="Menu-principal">
     
@@ -82,70 +85,70 @@
                     <ol class="list-group list-group-numbered">
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Nome da Empresa</div>
+                            <div id="nome0" class="fw-bold">Nome da Empresa</div>
                            BOA
                           </div>
                           <span class="badge bg-primary rounded-pill">14</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Nome da Empresa</div>
+                            <div id="nome1"class="fw-bold">Nome da Empresa</div>
                            BOA
                           </div>
                           <span class="badge bg-primary rounded-pill">14</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Nome da Empresa</div>
+                            <div id="nome2"class="fw-bold">Nome da Empresa</div>
                            BOA
                           </div>
                           <span class="badge bg-primary rounded-pill">14</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Nome da Empresa</div>
+                            <div id="nome3" class="fw-bold">Nome da Empresa</div>
                            BOA
                           </div>
                           <span class="badge bg-primary rounded-pill">14</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Nome da Empresa</div>
+                            <div id="nome4" class="fw-bold">Nome da Empresa</div>
                            BOA
                           </div>
                           <span class="badge bg-primary rounded-pill">14</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Nome da Empresa</div>
+                            <div id="nome5" class="fw-bold">Nome da Empresa</div>
                            BOA
                           </div>
                           <span class="badge bg-primary rounded-pill">14</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Nome da Empresa</div>
+                            <div id="nome6" class="fw-bold">Nome da Empresa</div>
                            BOA
                           </div>
                           <span class="badge bg-primary rounded-pill">14</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Nome da Empresa</div>
+                            <div id="nome7"class="fw-bold">Nome da Empresa</div>
                            BOA
                           </div>
                           <span class="badge bg-primary rounded-pill">14</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Nome da Empresa</div>
+                            <div id="nome8" class="fw-bold">Nome da Empresa</div>
                            BOA
                           </div>
                           <span class="badge bg-primary rounded-pill">14</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Nome da Empresa</div>
+                            <div id="nome9" class="fw-bold">Nome da Empresa</div>
                            BOA
                           </div>
                           <span class="badge bg-primary rounded-pill">14</span>
@@ -157,70 +160,70 @@
                     <ol class="list-group list-group-numbered">
                       <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                          <div class="fw-bold">Nome da Empresa</div>
+                          <div id="nome10" class="fw-bold">Nome da Empresa</div>
                          BOA
                         </div>
                         <span class="badge bg-primary rounded-pill">14</span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                          <div class="fw-bold">Nome da Empresa</div>
+                          <div id="nome11"class="fw-bold">Nome da Empresa</div>
                          BOA
                         </div>
                         <span class="badge bg-primary rounded-pill">14</span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                          <div class="fw-bold">Nome da Empresa</div>
+                          <div id="nome12"class="fw-bold">Nome da Empresa</div>
                          BOA
                         </div>
                         <span class="badge bg-primary rounded-pill">14</span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                          <div class="fw-bold">Nome da Empresa</div>
+                          <div id="nome13" class="fw-bold">Nome da Empresa</div>
                          BOA
                         </div>
                         <span class="badge bg-primary rounded-pill">14</span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                          <div class="fw-bold">Nome da Empresa</div>
+                          <div id="nome14" class="fw-bold">Nome da Empresa</div>
                          BOA
                         </div>
                         <span class="badge bg-primary rounded-pill">14</span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                          <div class="fw-bold">Nome da Empresa</div>
+                          <div id="nome15" class="fw-bold">Nome da Empresa</div>
                          BOA
                         </div>
                         <span class="badge bg-primary rounded-pill">14</span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                          <div class="fw-bold">Nome da Empresa</div>
+                          <div id="nome16" class="fw-bold">Nome da Empresa</div>
                          BOA
                         </div>
                         <span class="badge bg-primary rounded-pill">14</span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                          <div class="fw-bold">Nome da Empresa</div>
+                          <div id="nome17"class="fw-bold">Nome da Empresa</div>
                          BOA
                         </div>
                         <span class="badge bg-primary rounded-pill">14</span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                          <div class="fw-bold">Nome da Empresa</div>
+                          <div id="nome18" class="fw-bold">Nome da Empresa</div>
                          BOA
                         </div>
                         <span class="badge bg-primary rounded-pill">14</span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                          <div class="fw-bold">Nome da Empresa</div>
+                          <div id="nome19" class="fw-bold">Nome da Empresa</div>
                          BOA
                         </div>
                         <span class="badge bg-primary rounded-pill">14</span>
@@ -275,4 +278,33 @@
     
     </body>
 </html>
+<script>
 
+function buscarReclamacao(){
+    
+    
+    axios.get('http://localhost:8080/empresa/', {})
+    .then(function (response) {
+      empresa(response.data)
+    })
+
+}
+
+function empresa(dados) {
+
+    var aux = 0
+
+    dados.forEach((empresa) => {
+
+      let texto = document.getElementById('nome'+ aux);
+      texto.innerHTML = empresa.nome;
+      aux ++;
+    });
+    
+}
+
+
+
+
+
+</script>

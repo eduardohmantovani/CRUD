@@ -150,13 +150,16 @@ function cadastrar(){
         })
        return;
     }
+
+
+
     reclamacao = {};
     reclamacao.titulo = $("#titulo").val();
     reclamacao.descricao = $("#descricao").val();
     reclamacao.cliente_id = 7;
-    reclamacao.empresa_id = 49;
-  
-    //cliente.cidade_id = $("#selCidade").val();
+    reclamacao.empresa_id = $("#list").val();
+    reclamacao.data_Reclamacao = "19-09-2021,0";
+
     
     axios.post("http://localhost:8080/reclamacao", reclamacao)
     .then(function (response) {
