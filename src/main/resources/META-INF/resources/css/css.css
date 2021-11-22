@@ -123,6 +123,12 @@ hr{
 	font-size: 48px;
 	text-align: center;
 }
+.fundocad{
+	background-color: gainsboro;
+}
+.fundoCadpfpj{
+	background-color: #f59d04;
+}
 
 #texto p {
 	margin-top: 60px;
@@ -195,3 +201,27 @@ a {
 a:hover{
     color:red;
 }
+.SelecEnd{
+		width: 350px;
+		display: block;
+		margin-bottom: 15px;
+		background-color: rgb(255, 255, 255);
+	  }
+.textoEnd{
+	font-family: 'CANDARA';
+	font-weight: bold;
+}
+.titulomensagem{
+	background-color:#ffd48b;
+	font-family: 'CANDARA';
+	font-weight: bold;
+	width:700px;
+	height:200px;
+	resize: none;
+}
+.CadReclamacao{
+	width: 350px;
+	display: block;
+	margin-bottom: 15px;
+	background-color: rgb(255, 255, 255);
+  }

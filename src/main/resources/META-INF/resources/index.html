@@ -59,6 +59,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item" href="login.html">ENTRAR</a></li>
+                                    <li><a class="dropdown-item" href="reclamacao.html">CASDASTRAR RECLAMAÇÃO</a></li>
                                     <li><a class="dropdown-item" href="cadastropf.html">CASDASTRO FÍSICA </a></li>
                                     <li><a class="dropdown-item" href="cadastropj.html">CADASTRO JURÍDICA</a></li>
                                 </ul>
@@ -195,8 +196,7 @@
 function reclamar(){
 
 var id = $ ("#list").val(); 
-session.setAttribute("cod_material", Integer.valueOf(s.getInt("id")));
-window.location = "reclamacao.html"; 
+window.location = "/reclamacao.html"; 
 
 } 
 

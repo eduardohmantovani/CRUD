@@ -22,8 +22,7 @@ public class EmpresaResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Empresa> getAll(){
-           
+    public List<Empresa> getAll(){          
        return Empresa.listAll();
 
     }
